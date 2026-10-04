@@ -1,0 +1,41 @@
+# input (C-style escapes) <TAB> expected token names
+	<EMPTY>
+   \t\r\n	<EMPTY>
+0	INT
+00	ERROR
+01	ERROR
+10	INT
+123456	INT
+_abc	IDENT
+abc_123	IDENT
+abc__123	IDENT
+function	KW_function
+returns	KW_returns
+while	KW_while
+if	KW_if
+else	KW_else
+assert	KW_assert
+assume	KW_assume
+invariant	KW_invariant
+length	KW_length
+true	KW_true
+false	KW_false
+int	KW_int
+function f(int x) returns l: int { return_value = 0; }	KW_function IDENT LPAREN KW_int IDENT RPAREN KW_returns IDENT COLON KW_int LBRACE IDENT ASSIGN INT SEMICOLON RBRACE
+()[]{},;	LPAREN RPAREN LBRACKET RBRACKET LBRACE RBRACE COMMA SEMICOLON
++ - * / == != <= >= < > =	PLUS MINUS STAR SLASH EQEQ NE LE GE LT GT ASSIGN
+// comment until EOL	<EMPTY>
+abc // comment\r\ndef	IDENT IDENT
+// only comment\n\t\r\n	<EMPTY>
+a//x\nb	IDENT IDENT
+f(a,b)->c	IDENT LPAREN IDENT COMMA IDENT RPAREN ARROW IDENT
+p=>q	IDENT FATARROW IDENT
+x:int[]	IDENT COLON KW_int LBRACKET RBRACKET
+length(a)	KW_length LPAREN IDENT RPAREN
+not true and false or x>=0	KW_not KW_true KW_and KW_false KW_or IDENT GE INT
+forall(i: int | i>=0)	KW_forall LPAREN IDENT COLON KW_int PIPE IDENT GE INT RPAREN
+0123	ERROR
+é	ERROR
+abcé	ERROR
+!	ERROR
+@	ERROR
