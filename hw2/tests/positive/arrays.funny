@@ -1,0 +1,6 @@
+function arr(a: int[], i: int, j: int, v: int) returns b: int[] {
+  b = a;
+  b[i] = v;
+  b[i][j] = v + 1;
+  assert length(b) >= 0;
+}

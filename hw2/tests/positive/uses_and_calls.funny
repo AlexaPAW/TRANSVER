@@ -1,0 +1,6 @@
+function caller(a: int, b: int) returns r: int
+uses tmp, arr: int[] {
+  tmp = a;
+  r = inc(a);
+  arr[0] = r;
+}

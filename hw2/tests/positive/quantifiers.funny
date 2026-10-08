@@ -1,0 +1,9 @@
+nonnegative(x: int) => x >= 0
+
+function check(x: int, y: int) requires nonnegative(x) and (y >= x)
+returns r: int
+ensures forall(i: int | i >= 0 and i < r) {
+  r = x + y;
+  assert exists(i: int | i >= 0 and i < r);
+  assume not (r < x);
+}

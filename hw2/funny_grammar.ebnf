@@ -1,0 +1,69 @@
+(* The original Funny syntax has a local LPAREN ambiguity
+   between a parenthesized predicate/condition and a parenthesized expression
+   used as the left side of a comparison; the implementation resolves it by
+   precomputed matching-parenthesis positions. *)
+
+program              = declaration , { declaration } ;
+declaration          = functionDecl | formulaDecl ;
+
+functionDecl         = KW_function , IDENT , LPAREN , [ paramList ] , RPAREN ,
+                       [ KW_requires , predicate ] ,
+                       KW_returns , returnList ,
+                       [ KW_ensures , predicate ] ,
+                       [ KW_uses , localList ] ,
+                       statement ;
+
+formulaDecl          = IDENT , LPAREN , [ paramList ] , RPAREN , FATARROW , predicate ;
+
+paramList            = variableDef , { COMMA , variableDef } ;
+returnList           = variableDef , { COMMA , variableDef } ;
+localList            = localVarDef , { COMMA , localVarDef } ;
+variableDef          = IDENT , COLON , type ;
+localVarDef          = IDENT , [ COLON , type ] ;
+type                 = KW_int , [ LBRACKET , RBRACKET ] ;
+
+statement            = block | assignment | conditional | loop | assertStmt | assumeStmt ;
+block                = LBRACE , { statement } , RBRACE ;
+
+assignment           = IDENT , assignmentTail ;
+assignmentTail       = { arraySuffix } , ASSIGN , expr , SEMICOLON
+                     | COMMA , IDENT , { COMMA , IDENT } , ASSIGN , functionCall , SEMICOLON
+                     | ASSIGN , expr , SEMICOLON ;
+
+conditional          = KW_if , LPAREN , condition , RPAREN , statement , [ KW_else , statement ] ;
+loop                 = KW_while , LPAREN , condition , RPAREN ,
+                       [ KW_invariant , predicate ] , statement ;
+assertStmt           = KW_assert , predicate , SEMICOLON ;
+assumeStmt           = KW_assume , predicate , SEMICOLON ;
+
+expr                 = addExpr ;
+addExpr              = mulExpr , { ( PLUS | MINUS ) , mulExpr } ;
+mulExpr              = unaryExpr , { ( STAR | SLASH ) , unaryExpr } ;
+unaryExpr            = MINUS , unaryExpr | primary ;
+primary              = INT
+                     | IDENT , primaryTail
+                     | KW_length , callTail
+                     | LPAREN , expr , RPAREN ;
+primaryTail          = callTail | { arraySuffix } ;
+callTail             = LPAREN , [ argumentList ] , RPAREN ;
+functionCall         = IDENT , callTail ;
+argumentList         = expr , { COMMA , expr } ;
+arraySuffix          = LBRACKET , expr , RBRACKET ;
+
+condition            = implication ;
+implication          = disjunction , [ ARROW , implication ] ;
+disjunction          = conjunction , { KW_or , conjunction } ;
+conjunction          = conditionUnary , { KW_and , conditionUnary } ;
+conditionUnary       = [ KW_not ] , conditionAtom ;
+conditionAtom        = KW_true | KW_false | comparison | LPAREN , condition , RPAREN ;
+comparison           = expr , comparisonOp , expr ;
+comparisonOp         = EQEQ | NE | LE | GE | LT | GT ;
+
+predicate            = predicateOr ;
+predicateOr          = predicateAnd , { KW_or , predicateAnd } ;
+predicateAnd         = predicateUnary , { KW_and , predicateUnary } ;
+predicateUnary       = [ KW_not ] , predicateAtom ;
+predicateAtom        = KW_true | KW_false | quantifier | comparison | formulaRef
+                     | LPAREN , predicate , RPAREN ;
+quantifier           = ( KW_forall | KW_exists ) , LPAREN , variableDef , PIPE , predicate , RPAREN ;
+formulaRef           = IDENT , callTail ;

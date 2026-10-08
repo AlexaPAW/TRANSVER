@@ -1,0 +1,125 @@
+{
+  "kind": "Program",
+  "declarations": [
+    {
+      "kind": "FunctionDecl",
+      "pos": {
+        "offset": 0,
+        "line": 1,
+        "column": 1
+      },
+      "name": "make_pair",
+      "params": [
+        {
+          "kind": "VariableDef",
+          "pos": {
+            "offset": 19,
+            "line": 1,
+            "column": 20
+          },
+          "name": "a",
+          "type": "int"
+        },
+        {
+          "kind": "VariableDef",
+          "pos": {
+            "offset": 27,
+            "line": 1,
+            "column": 28
+          },
+          "name": "b",
+          "type": "int"
+        }
+      ],
+      "requires": {
+        "kind": "BoolLiteral",
+        "pos": {
+          "offset": 0,
+          "line": 1,
+          "column": 1
+        },
+        "value": true
+      },
+      "returns": [
+        {
+          "kind": "VariableDef",
+          "pos": {
+            "offset": 43,
+            "line": 1,
+            "column": 44
+          },
+          "name": "x",
+          "type": "int"
+        },
+        {
+          "kind": "VariableDef",
+          "pos": {
+            "offset": 51,
+            "line": 1,
+            "column": 52
+          },
+          "name": "y",
+          "type": "int"
+        }
+      ],
+      "ensures": {
+        "kind": "BoolLiteral",
+        "pos": {
+          "offset": 0,
+          "line": 1,
+          "column": 1
+        },
+        "value": false
+      },
+      "uses": [],
+      "body": {
+        "kind": "Block",
+        "pos": {
+          "offset": 58,
+          "line": 1,
+          "column": 59
+        },
+        "statements": [
+          {
+            "kind": "Assignment",
+            "pos": {
+              "offset": 62,
+              "line": 2,
+              "column": 3
+            },
+            "targets": ["x", "y"],
+            "call": {
+              "kind": "CallExpr",
+              "pos": {
+                "offset": 69,
+                "line": 2,
+                "column": 10
+              },
+              "name": "pair",
+              "args": [
+                {
+                  "kind": "Variable",
+                  "pos": {
+                    "offset": 74,
+                    "line": 2,
+                    "column": 15
+                  },
+                  "name": "a"
+                },
+                {
+                  "kind": "Variable",
+                  "pos": {
+                    "offset": 77,
+                    "line": 2,
+                    "column": 18
+                  },
+                  "name": "b"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

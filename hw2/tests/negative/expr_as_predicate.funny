@@ -1,0 +1,4 @@
+function bad(x: int) returns r: int {
+  r = x;
+  assert (x + 1);
+}

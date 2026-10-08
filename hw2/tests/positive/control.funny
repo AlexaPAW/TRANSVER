@@ -1,0 +1,11 @@
+function loop(x: int) returns y: int {
+  y = x;
+  if ((y >= 0) and (x < 10 or x == 20)) {
+    y = y + 1;
+  } else {
+    y = y - 1;
+  }
+  while (y < 5) invariant y >= -100 {
+    y = y + 1;
+  }
+}

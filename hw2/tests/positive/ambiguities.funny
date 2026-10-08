@@ -1,0 +1,17 @@
+nonnegative(x: int) => x >= 0
+
+function ambiguous(x: int, y: int)
+requires (nonnegative(x) and ((x + 1) > y))
+returns r: int
+ensures (((r > x) and ((r + 1) > y)))
+{
+  r = x;
+  if (((x + 1) > y)) {
+    r = x + 1;
+  } else {
+    r = y;
+  }
+  assert (nonnegative(r));
+  assert ((inc(r)) == r);
+  assert (((r > x) and ((r + 1) > y)));
+}

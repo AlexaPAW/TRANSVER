@@ -1,0 +1,5 @@
+function f(x: int) returns y: int {
+  y = x + 2 * 3;
+  y = - -y;
+  assert y >= x;
+}

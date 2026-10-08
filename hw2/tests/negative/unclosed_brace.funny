@@ -1,0 +1,2 @@
+function f(x: int) returns y: int {
+  y = x;
