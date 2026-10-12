@@ -56,10 +56,10 @@
    GT                  -      46     >
    ASSIGN              -      47     =
 
-(*   Lexer-produced token:
-     END — added after scanning the source*)
+(* Lexer-produced token:
+   END — added after scanning the source *)
 
-(*Grammar specification*)
+(* Grammar specification *)
 
 program              = declaration , { declaration } ;
 declaration          = functionDecl | formulaDecl ;
@@ -126,7 +126,7 @@ predicateAtom        = KW_true | KW_false | quantifier | comparison | formulaRef
 quantifier           = ( KW_forall | KW_exists ) , LPAREN , variableDef , PIPE , predicate , RPAREN ;
 formulaRef           = IDENT , callTail ;
 
-(*Priorities*)
+(* Priorities *)
 (*
    1) Arithmetics:
 
