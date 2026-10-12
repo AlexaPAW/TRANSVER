@@ -3,6 +3,64 @@
    used as the left side of a comparison; the implementation resolves it by
    precomputed matching-parenthesis positions. *)
 
+(* Lexical specification *)
+
+   TOKEN             FLAG  PRIORITY  REGEX
+   ------------------------------------------------------
+   BAD_INT             E       0     0[0-9]+
+   WS                  S       1     [ \t\r\n]+
+   COMMENT             S       2     //[^\r\n]*
+   EQEQ                -       3     ==
+   NE                  -       4     !=
+   LE                  -       5     <=
+   GE                  -       6     >=
+   ARROW               -       7     ->
+   FATARROW            -       8     =>
+   KW_function         -       9     function
+   KW_returns          -      10     returns
+   KW_requires         -      11     requires
+   KW_ensures          -      12     ensures
+   KW_uses             -      13     uses
+   KW_if               -      14     if
+   KW_else             -      15     else
+   KW_while            -      16     while
+   KW_invariant        -      17     invariant
+   KW_assert           -      18     assert
+   KW_assume           -      19     assume
+   KW_forall           -      20     forall
+   KW_exists           -      21     exists
+   KW_true             -      22     true
+   KW_false            -      23     false
+   KW_not              -      24     not
+   KW_and              -      25     and
+   KW_or               -      26     or
+   KW_int              -      27     int
+   KW_length           -      28     length
+   INT                 -      29     0|[1-9][0-9]*
+   IDENT               -      30     [A-Za-z_][A-Za-z0-9_]*
+   LPAREN              -      31     \(
+   RPAREN              -      32     \)
+   LBRACKET            -      33     \[
+   RBRACKET            -      34     \]
+   LBRACE              -      35     \{
+   RBRACE              -      36     \}
+   COMMA               -      37     ,
+   SEMICOLON           -      38     ;
+   COLON               -      39     :
+   PIPE                -      40     \|
+   PLUS                -      41     \+
+   MINUS               -      42     -
+   STAR                -      43     \*
+   SLASH               -      44     /
+   LT                  -      45     <
+   GT                  -      46     >
+   ASSIGN              -      47     =
+
+(*   Lexer-produced token:
+     END — added after scanning the source*)
+
+(*Grammar specification*)
+
 program              = declaration , { declaration } ;
 declaration          = functionDecl | formulaDecl ;
 
@@ -67,3 +125,69 @@ predicateAtom        = KW_true | KW_false | quantifier | comparison | formulaRef
                      | LPAREN , predicate , RPAREN ;
 quantifier           = ( KW_forall | KW_exists ) , LPAREN , variableDef , PIPE , predicate , RPAREN ;
 formulaRef           = IDENT , callTail ;
+
+(*Priorities*)
+(*
+   1) Arithmetics:
+
+       Highest
+          (...)  f(...)  a[i]
+          -x
+          *  /
+          +  -
+       Lowest
+
+       T.e:
+           () / call / index  >  unary-  >  * /  >  + -
+
+       Assotiativity:
+           a - b - c      =>  (a - b) - c
+           a / b * c      =>  (a / b) * c
+           - -x           =>  -(-x)
+
+   B) Comparisons:
+
+       <  <=  >  >=  ==  != have same priority after arithmetics:
+           a + b < c * d  =>  (a + b) < (c * d)
+
+       General rules:
+           a < b < c       — incorrect
+           a < b and b < c — correct
+
+   C) if/while
+
+       Highest
+          conparison / (...)
+          not P
+          P and Q
+          P or Q
+          P -> Q
+       Lowest
+
+       T.e:
+           conparison / (...)  >  not  >  and  >  or  >  ->
+
+       Assotiativity:
+           A and B and C    =>  (A and B) and C
+           A or B or C      =>  (A or B) or C
+           A -> B -> C      =>  A -> (B -> C)
+           not not A        =>  not (not A)
+
+   D) General predicates (requires, ensures, invariant, assert, assume,
+      formula block)
+
+       Highest
+          comparison / true / false / formulaRef / quantifier / (...)
+          not P
+          P and Q
+          P or Q
+       Lowest
+
+       T.e:
+           atom/comparison  >  not  >  and  >  or
+
+
+   EBNF priority:
+       expr -> addExpr -> mulExpr -> unaryExpr -> primary
+   This means: first, primary constructs are analyzed, then unary minus, then * and /, and then + and -.
+   The code processes chains of +, -, *, /, and, or, so they are grouped from left to right.*)
