@@ -1,0 +1,3 @@
+function same(x: int) returns r: int { r = x; }
+same(y: int) => y >= 0
+function same(z: int) returns q: int { q = z; }

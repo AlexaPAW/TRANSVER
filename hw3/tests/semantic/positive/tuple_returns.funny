@@ -1,0 +1,8 @@
+function pair(a: int, b: int) returns left: int, right: int {
+  left = a;
+  right = b;
+}
+
+function forward(a: int, b: int) returns x: int, y: int {
+  x, y = pair(a, b);
+}

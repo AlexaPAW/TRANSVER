@@ -1,0 +1,3 @@
+function bad(a: int[]) returns result: int {
+  result = a;
+}

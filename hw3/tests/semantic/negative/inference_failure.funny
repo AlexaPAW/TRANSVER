@@ -1,0 +1,4 @@
+function bad(arr: int) returns r: int uses inferred {
+  inferred = length(arr);
+  r = inferred;
+}

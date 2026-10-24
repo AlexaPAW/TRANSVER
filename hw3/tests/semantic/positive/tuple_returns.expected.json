@@ -1,0 +1,254 @@
+{
+  "kind": "Program",
+  "declarations": [
+    {
+      "kind": "FunctionDecl",
+      "pos": {
+        "offset": 0,
+        "line": 1,
+        "column": 1
+      },
+      "name": "pair",
+      "params": [
+        {
+          "kind": "VariableDef",
+          "pos": {
+            "offset": 14,
+            "line": 1,
+            "column": 15
+          },
+          "name": "a",
+          "type": "int"
+        },
+        {
+          "kind": "VariableDef",
+          "pos": {
+            "offset": 22,
+            "line": 1,
+            "column": 23
+          },
+          "name": "b",
+          "type": "int"
+        }
+      ],
+      "requires": {
+        "kind": "BoolLiteral",
+        "type": "bool",
+        "pos": {
+          "offset": 0,
+          "line": 1,
+          "column": 1
+        },
+        "value": true
+      },
+      "returns": [
+        {
+          "kind": "VariableDef",
+          "pos": {
+            "offset": 38,
+            "line": 1,
+            "column": 39
+          },
+          "name": "left",
+          "type": "int"
+        },
+        {
+          "kind": "VariableDef",
+          "pos": {
+            "offset": 49,
+            "line": 1,
+            "column": 50
+          },
+          "name": "right",
+          "type": "int"
+        }
+      ],
+      "ensures": {
+        "kind": "BoolLiteral",
+        "type": "bool",
+        "pos": {
+          "offset": 0,
+          "line": 1,
+          "column": 1
+        },
+        "value": false
+      },
+      "uses": [],
+      "body": {
+        "kind": "Block",
+        "pos": {
+          "offset": 60,
+          "line": 1,
+          "column": 61
+        },
+        "statements": [
+          {
+            "kind": "Assignment",
+            "pos": {
+              "offset": 64,
+              "line": 2,
+              "column": 3
+            },
+            "target": "left",
+            "indices": [],
+            "value": {
+              "kind": "Variable",
+              "type": "int",
+              "pos": {
+                "offset": 71,
+                "line": 2,
+                "column": 10
+              },
+              "name": "a"
+            }
+          },
+          {
+            "kind": "Assignment",
+            "pos": {
+              "offset": 76,
+              "line": 3,
+              "column": 3
+            },
+            "target": "right",
+            "indices": [],
+            "value": {
+              "kind": "Variable",
+              "type": "int",
+              "pos": {
+                "offset": 84,
+                "line": 3,
+                "column": 11
+              },
+              "name": "b"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "FunctionDecl",
+      "pos": {
+        "offset": 90,
+        "line": 6,
+        "column": 1
+      },
+      "name": "forward",
+      "params": [
+        {
+          "kind": "VariableDef",
+          "pos": {
+            "offset": 107,
+            "line": 6,
+            "column": 18
+          },
+          "name": "a",
+          "type": "int"
+        },
+        {
+          "kind": "VariableDef",
+          "pos": {
+            "offset": 115,
+            "line": 6,
+            "column": 26
+          },
+          "name": "b",
+          "type": "int"
+        }
+      ],
+      "requires": {
+        "kind": "BoolLiteral",
+        "type": "bool",
+        "pos": {
+          "offset": 90,
+          "line": 6,
+          "column": 1
+        },
+        "value": true
+      },
+      "returns": [
+        {
+          "kind": "VariableDef",
+          "pos": {
+            "offset": 131,
+            "line": 6,
+            "column": 42
+          },
+          "name": "x",
+          "type": "int"
+        },
+        {
+          "kind": "VariableDef",
+          "pos": {
+            "offset": 139,
+            "line": 6,
+            "column": 50
+          },
+          "name": "y",
+          "type": "int"
+        }
+      ],
+      "ensures": {
+        "kind": "BoolLiteral",
+        "type": "bool",
+        "pos": {
+          "offset": 90,
+          "line": 6,
+          "column": 1
+        },
+        "value": false
+      },
+      "uses": [],
+      "body": {
+        "kind": "Block",
+        "pos": {
+          "offset": 146,
+          "line": 6,
+          "column": 57
+        },
+        "statements": [
+          {
+            "kind": "Assignment",
+            "pos": {
+              "offset": 150,
+              "line": 7,
+              "column": 3
+            },
+            "targets": ["x", "y"],
+            "call": {
+              "kind": "CallExpr",
+              "type": "tuple<int, int>",
+              "pos": {
+                "offset": 157,
+                "line": 7,
+                "column": 10
+              },
+              "name": "pair",
+              "args": [
+                {
+                  "kind": "Variable",
+                  "type": "int",
+                  "pos": {
+                    "offset": 162,
+                    "line": 7,
+                    "column": 15
+                  },
+                  "name": "a"
+                },
+                {
+                  "kind": "Variable",
+                  "type": "int",
+                  "pos": {
+                    "offset": 165,
+                    "line": 7,
+                    "column": 18
+                  },
+                  "name": "b"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

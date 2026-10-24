@@ -1,0 +1,153 @@
+{
+  "kind": "Program",
+  "declarations": [
+    {
+      "kind": "FunctionDecl",
+      "pos": {
+        "offset": 0,
+        "line": 1,
+        "column": 1
+      },
+      "name": "writeAndRead",
+      "params": [
+        {
+          "kind": "VariableDef",
+          "pos": {
+            "offset": 22,
+            "line": 1,
+            "column": 23
+          },
+          "name": "i",
+          "type": "int"
+        },
+        {
+          "kind": "VariableDef",
+          "pos": {
+            "offset": 30,
+            "line": 1,
+            "column": 31
+          },
+          "name": "value",
+          "type": "int"
+        }
+      ],
+      "requires": {
+        "kind": "BoolLiteral",
+        "type": "bool",
+        "pos": {
+          "offset": 0,
+          "line": 1,
+          "column": 1
+        },
+        "value": true
+      },
+      "returns": [
+        {
+          "kind": "VariableDef",
+          "pos": {
+            "offset": 50,
+            "line": 1,
+            "column": 51
+          },
+          "name": "result",
+          "type": "int"
+        }
+      ],
+      "ensures": {
+        "kind": "BoolLiteral",
+        "type": "bool",
+        "pos": {
+          "offset": 0,
+          "line": 1,
+          "column": 1
+        },
+        "value": false
+      },
+      "uses": [
+        {
+          "kind": "LocalVarDef",
+          "pos": {
+            "offset": 67,
+            "line": 1,
+            "column": 68
+          },
+          "name": "buffer",
+          "type": "int[]"
+        }
+      ],
+      "body": {
+        "kind": "Block",
+        "pos": {
+          "offset": 74,
+          "line": 1,
+          "column": 75
+        },
+        "statements": [
+          {
+            "kind": "Assignment",
+            "pos": {
+              "offset": 78,
+              "line": 2,
+              "column": 3
+            },
+            "target": "buffer",
+            "indices": [
+              {
+                "kind": "Variable",
+                "type": "int",
+                "pos": {
+                  "offset": 85,
+                  "line": 2,
+                  "column": 10
+                },
+                "name": "i"
+              }
+            ],
+            "value": {
+              "kind": "Variable",
+              "type": "int",
+              "pos": {
+                "offset": 90,
+                "line": 2,
+                "column": 15
+              },
+              "name": "value"
+            }
+          },
+          {
+            "kind": "Assignment",
+            "pos": {
+              "offset": 99,
+              "line": 3,
+              "column": 3
+            },
+            "target": "result",
+            "indices": [],
+            "value": {
+              "kind": "ArrayAccess",
+              "type": "int",
+              "pos": {
+                "offset": 108,
+                "line": 3,
+                "column": 12
+              },
+              "name": "buffer",
+              "indices": [
+                {
+                  "kind": "Variable",
+                  "type": "int",
+                  "pos": {
+                    "offset": 115,
+                    "line": 3,
+                    "column": 19
+                  },
+                  "name": "i"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

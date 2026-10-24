@@ -1,0 +1,3 @@
+function make_pair(a: int, b: int) returns x: int, y: int {
+  x, y = pair(a, b);
+}

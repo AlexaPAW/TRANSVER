@@ -1,0 +1,4 @@
+function writeAndRead(i: int, value: int) returns result: int uses buffer {
+  buffer[i] = value;
+  result = buffer[i];
+}

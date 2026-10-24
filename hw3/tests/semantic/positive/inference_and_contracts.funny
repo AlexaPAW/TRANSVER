@@ -1,0 +1,17 @@
+nonnegative(x: int) => x >= 0
+
+function inc(x: int) returns r: int {
+  r = x + 1;
+}
+
+function compute(a: int, data: int[]) requires nonnegative(a)
+returns result: int ensures result >= a
+uses temp, copy: int[] {
+  temp = inc(a);
+  copy = data;
+  result = temp + length(copy);
+  if (result >= a) {
+    result = result - 1;
+  }
+  assert result >= a;
+}

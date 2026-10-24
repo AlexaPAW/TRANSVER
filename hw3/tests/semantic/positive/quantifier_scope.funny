@@ -1,0 +1,6 @@
+nonnegative(x: int) => forall(x: int | x >= 0)
+
+function check(x: int) returns result: int {
+  result = x;
+  assert nonnegative(result);
+}

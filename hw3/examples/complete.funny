@@ -1,0 +1,21 @@
+function update(a: int[], i: int, v: int) returns r: int[]
+uses tmp: int[], x
+{
+  tmp = a;
+  tmp[i] = v;
+  x = length(tmp);
+  if (x > 0 and i >= 0) {
+    r = tmp;
+  } else {
+    r = a;
+  }
+  while (x < 10) invariant x >= 0 {
+    x = x + 1;
+  }
+  assert x >= 0;
+  assume not (x < 0);
+}
+
+nonnegative(x: int) => x >= 0
+
+all_nonnegative(a: int[]) => forall(i: int | i >= 0 and i < length(a))

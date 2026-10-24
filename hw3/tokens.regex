@@ -1,0 +1,50 @@
+# name<TAB>flags<TAB>priority<TAB>regex
+# S = skip, E = lexical-error token; lower priority number wins ties
+BAD_INT	E	0	0[0-9]+
+WS	S	1	[ \t\r\n]+
+COMMENT	S	2	//[^\r\n]*
+EQEQ		3	==
+NE		4	!=
+LE		5	<=
+GE		6	>=
+ARROW		7	->
+FATARROW		8	=>
+KW_function		9	function
+KW_returns		10	returns
+KW_requires		11	requires
+KW_ensures		12	ensures
+KW_uses		13	uses
+KW_if		14	if
+KW_else		15	else
+KW_while		16	while
+KW_invariant		17	invariant
+KW_assert		18	assert
+KW_assume		19	assume
+KW_forall		20	forall
+KW_exists		21	exists
+KW_true		22	true
+KW_false		23	false
+KW_not		24	not
+KW_and		25	and
+KW_or		26	or
+KW_int		27	int
+KW_length		28	length
+INT		29	0|[1-9][0-9]*
+IDENT		30	[A-Za-z_][A-Za-z0-9_]*
+LPAREN		31	\(
+RPAREN		32	\)
+LBRACKET		33	\[
+RBRACKET		34	\]
+LBRACE		35	\{
+RBRACE		36	\}
+COMMA		37	,
+SEMICOLON		38	;
+COLON		39	:
+PIPE		40	\|
+PLUS		41	\+
+MINUS		42	-
+STAR		43	\*
+SLASH		44	/
+LT		45	<
+GT		46	>
+ASSIGN		47	=

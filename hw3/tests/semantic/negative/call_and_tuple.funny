@@ -1,0 +1,11 @@
+function one(x: int) returns r: int {
+  r = x;
+}
+
+function bad(a: int) returns x: int, y: int {
+  x, y = one();
+}
+
+function badType(a: int[]) returns z: int {
+  z = one(a);
+}
